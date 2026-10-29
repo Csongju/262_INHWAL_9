@@ -3,33 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>인터넷활용 실습 템플릿</title>
+  <title>Home | 추송주</title>
   <link rel="stylesheet" href="style.css">
+  <!-- 페이지가 그려지기 전에 테마를 적용해 깜빡임을 막습니다 -->
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
 <body>
-<header>
-  <h1>이름: 추송주</h1>
-  <p class="subtitle">한 줄 소개: 광운대학교 소프트웨어학부 23학번입니다</p>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">추송주<span>.</span></a>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="다크 모드로 전환">🌙</button>
+    <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+  </div>
 </header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="contact.html">Contact</a>
-</nav>
-<main class="container">
-<section>
-  <h2>홈</h2>
-  <p>안녕하세요! 저는 <strong>이름: 추송주</strong> 입니다.</p>
-  <ul>
-    <li>학과/학번: 소프트웨어학부 / 2023203022</li>
-    <li>관심 분야: 개발</li>
-    <li>기술 스택: C, C++, PYTHON, HTML, CSS, JAVASCRIPT</li>
-  </ul>
+
+<section class="hero">
+  <span class="eyebrow">Welcome</span>
+  <h1>안녕하세요, 추송주입니다 👋</h1>
+  <p class="subtitle">광운대학교 소프트웨어학부 23학번 · <span class="typing" data-words='["개발을 좋아합니다", "C / C++ / Python", "웹을 배우는 중입니다"]'></span></p>
 </section>
+
+<main class="container">
+  <section class="card reveal">
+    <h2>홈</h2>
+    <p>안녕하세요! 저는 <strong>추송주</strong>입니다. 이 홈페이지는 인터넷활용 수업에서 만든 개인 소개 페이지예요.</p>
+    <ul class="info-list">
+      <li><span class="label">학과</span><span>소프트웨어학부</span></li>
+      <li><span class="label">학번</span><span>2023203022</span></li>
+      <li><span class="label">관심 분야</span><span>개발</span></li>
+    </ul>
+    <div class="actions">
+      <a class="btn" href="about.html">더 알아보기 →</a>
+      <a class="btn outline" href="portfolio.html">포트폴리오 보기</a>
+    </div>
+  </section>
+
+  <section class="card reveal">
+    <h2>기술 스택</h2>
+    <ul class="tags">
+      <li>C</li>
+      <li>C++</li>
+      <li>Python</li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ul>
+  </section>
 </main>
+
 <footer>
-  <small>&copy; <span id="year"></span> 이름: 추송주</small>
+  <small>&copy; <span id="year"></span> 추송주. All rights reserved.</small>
 </footer>
 <script src="script.js"></script>
 </body>

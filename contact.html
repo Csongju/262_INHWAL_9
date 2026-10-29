@@ -3,39 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>인터넷활용 실습 템플릿</title>
+  <title>Contact | 추송주</title>
   <link rel="stylesheet" href="style.css">
+  <!-- 페이지가 그려지기 전에 테마를 적용해 깜빡임을 막습니다 -->
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
 <body>
-<header>
-  <h1>이름: 추송주</h1>
-  <p class="subtitle">한 줄 소개: 소프트웨어학부 23학번입니다.</p>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">추송주<span>.</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="다크 모드로 전환">🌙</button>
+    <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+  </div>
 </header>
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="contact.html">Contact</a>
-</nav>
-<main class="container">
-<section>
-  <h2>Contact</h2>
-  <ul>
-    <li>이메일: choosongju23@gmail.com</li>
-    <li>GitHub: Csongju</li>
-  </ul>
-  <!-- 아래는 정말 기본 예시 폼입니다. JS 없이도 동작하지 않아도 되며, 형태만 제공합니다. -->
-  <form class="contact-form" onsubmit="return false;">
-    <label>이름</label>
-    <input type="text" placeholder="이름을 입력하세요">
-    <label>메시지</label>
-    <textarea rows="4" placeholder="메시지를 입력하세요"></textarea>
-    <button type="submit">보내기 (동작X, 형태만)</button>
-  </form>
+
+<section class="hero">
+  <span class="eyebrow">Contact</span>
+  <h1>연락하기</h1>
+  <p class="subtitle">궁금한 점이 있다면 편하게 연락 주세요.</p>
 </section>
+
+<main class="container">
+  <div class="grid-2">
+    <section class="card reveal">
+      <h2>Contact</h2>
+      <ul class="info-list contact-list">
+        <li>
+          <span class="label">이메일</span>
+          <span>
+            <a href="mailto:choosongju23@gmail.com">choosongju23@gmail.com</a>
+            <button class="copy-btn" type="button" data-copy="choosongju23@gmail.com">복사</button>
+          </span>
+        </li>
+        <li>
+          <span class="label">GitHub</span>
+          <a href="https://github.com/Csongju" target="_blank" rel="noopener">Csongju ↗</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card reveal">
+      <h2>메시지 보내기</h2>
+      <!-- 보내기를 누르면 입력값을 확인한 뒤 메일 앱이 열립니다 (script.js 7번) -->
+      <form class="contact-form" data-to="choosongju23@gmail.com" novalidate>
+        <label for="name">이름</label>
+        <input id="name" name="name" type="text" placeholder="이름을 입력하세요">
+        <label for="message">메시지</label>
+        <textarea id="message" name="message" rows="5" placeholder="메시지를 입력하세요"></textarea>
+        <button class="btn" type="submit">보내기 ✉️</button>
+        <p class="form-msg" role="status"></p>
+      </form>
+    </section>
+  </div>
 </main>
+
 <footer>
-  <small>&copy; <span id="year"></span> 이름: 추송주</small>
+  <small>&copy; <span id="year"></span> 추송주. All rights reserved.</small>
 </footer>
 <script src="script.js"></script>
 </body>
