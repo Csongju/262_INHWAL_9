@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>랜덤 뽑기 | 추송주</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sb-top">
+    <a class="brand" href="../../home.html">추송주<span>.</span></a>
+    <p class="sb-role">광운대학교 소프트웨어학부 23학번</p>
+  </div>
+  <nav>
+    <a href="../../home.html"><small>01</small>Home</a>
+    <a href="../../about.html"><small>02</small>About</a>
+    <a href="../../portfolio.html" aria-current="page"><small>03</small>Portfolio</a>
+    <a href="../../contact.html"><small>04</small>Contact</a>
+  </nav>
+  <div class="sb-foot">
+    <small>&copy; 2026 추송주</small>
+  </div>
+</aside>
+
+<main class="content">
+  <a class="back" href="../../portfolio.html">← 포트폴리오로</a>
+  <header class="page-head">
+    <span class="page-no">Week 11 · 실습 2</span>
+    <h1>식사 랜덤 뽑기</h1>
+    <p><code>String</code> · <code>Array</code> · <code>Math</code> 객체를 조합해 항목 하나를 무작위로 고릅니다.</p>
+  </header>
+
+  <section class="lab">
+    <h2>String + Array + Math 조합: 뽑기 결과</h2>
+
+    <script>
+      // 3. prompt()로 콤마(,)로 구분된 항목을 문자열로 입력받기
+      let inputString = prompt("항목을 콤마(,)로 구분하여 입력하세요", "짜장면,짬뽕,탕수육,제육볶음,돈까스,김치찌개,된장찌개,순대국,비빔밥,떡볶이,햄버거,초밥,파스타,마라탕,쌀국수");
+
+      // 4. 취소했거나 비어 있으면 뽑지 않음
+      if (!inputString) {
+        document.write('<div class="result cancel"><p class="caption">뽑기를 취소했습니다.</p></div>');
+      } else {
+        // 5. String.split(',') : 문자열 → 배열
+        let items = inputString.split(',');
+
+        // 6~7. Math.random() * items.length 를 Math.floor()로 내려 0 ~ (길이-1) 인덱스
+        let index = Math.floor(Math.random() * items.length);
+
+        // 8. 배열에서 index번째 항목 꺼내기
+        let choice = items[index];
+
+        // 9. String.trim() : 양쪽 공백 제거
+        choice = choice.trim();
+
+        // 10. 결과 출력
+        document.write('<div class="result">');
+        document.write('<p class="label">오늘의 선택은...</p>');
+        document.write('<p class="big">' + choice + '</p>');
+        document.write('<p class="caption">총 ' + items.length + '개 중에서 뽑았습니다.</p>');
+        document.write('<ul class="items">');
+        for (let i = 0; i < items.length; i++) {
+          let cls = (i === index) ? ' class="picked"' : '';
+          document.write('<li' + cls + '>' + items[i].trim() + '</li>');
+        }
+        document.write('</ul>');
+        document.write('</div>');
+      }
+    </script>
+
+    <p class="hint">새로고침(F5)을 누르면 다시 뽑을 수 있습니다.</p>
+  </section>
+</main>
+
+</body>
+</html>

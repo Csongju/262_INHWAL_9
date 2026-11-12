@@ -1,0 +1,145 @@
+/* =============================================================
+   11주차 실습 1: D-Day 계산기 전용 스타일
+   (메인 사이트와 같은 팔레트·사이드바를 이 폴더 안에서 다시 정의)
+   ------------------------------------------------------------- */
+:root {
+  --olive-leaf: #606c38;
+  --black-forest: #283618;
+  --cornsilk: #fefae0;
+  --sunlit-clay: #dda15e;
+  --copperwood: #bc6c25;
+
+  --bg: var(--cornsilk);
+  --surface: #fffdf1;
+  --text: var(--black-forest);
+  --muted: #5d6745;
+  --border: #e7dfb6;
+  --accent: var(--copperwood);
+  --accent-soft: #f5e2c4;
+  --olive: var(--olive-leaf);
+  --olive-soft: #e9ecd3;
+  --sidebar-bg: var(--black-forest);
+  --sidebar-text: var(--cornsilk);
+  --sidebar-muted: #b8bf96;
+  --sidebar-hover: #34461f;
+  --shadow: 0 10px 30px rgba(40, 54, 24, .08);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Pretendard", system-ui, -apple-system, "Segoe UI", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  word-break: keep-all;
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  min-height: 100vh;
+}
+a { color: var(--accent); }
+h1, h2, h3 { margin: 0 0 .6rem; line-height: 1.3; }
+
+/* ---------- 사이드바 ---------- */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2.25rem 1.5rem 1.75rem;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+.sb-top { display: flex; flex-direction: column; gap: .25rem; }
+.brand { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; color: var(--sidebar-text); text-decoration: none; }
+.brand span { color: var(--sunlit-clay); }
+.sb-role { margin: 0; font-size: .85rem; color: var(--sidebar-muted); }
+.sidebar nav { display: flex; flex-direction: column; gap: .25rem; }
+.sidebar nav a {
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
+  padding: .6rem .8rem;
+  border-radius: 10px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-weight: 600;
+}
+.sidebar nav a small { font-size: .75rem; font-weight: 700; color: var(--sidebar-muted); }
+.sidebar nav a:hover { background: var(--sidebar-hover); }
+.sidebar nav a[aria-current="page"] { background: var(--sunlit-clay); color: var(--black-forest); }
+.sidebar nav a[aria-current="page"] small { color: var(--black-forest); }
+.sb-foot { margin-top: auto; display: grid; gap: .75rem; }
+.sb-foot small { color: var(--sidebar-muted); font-size: .8rem; }
+
+/* ---------- 본문 ---------- */
+.content { width: 100%; max-width: 920px; padding: 4rem 3rem 3rem; }
+.back { display: inline-block; margin-bottom: 1.5rem; font-weight: 600; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+.page-head { padding-bottom: 2rem; margin-bottom: 2rem; border-bottom: 2px solid var(--text); }
+.page-no {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.page-no::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+.page-head h1 { font-size: clamp(2rem, 4.5vw, 3rem); letter-spacing: -.03em; margin: .8rem 0 .6rem; }
+.page-head p { margin: 0; color: var(--muted); }
+.page-head code { font-size: .9em; padding: .05rem .35rem; border-radius: 5px; background: var(--olive-soft); color: var(--olive); }
+
+/* ---------- 결과 패널 (document.write로 출력되는 부분) ---------- */
+.lab h2 { font-size: 1rem; color: var(--olive); }
+.result {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  text-align: center;
+}
+.result .big {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  color: var(--accent);
+  margin: .2rem 0 .4rem;
+  font-variant-numeric: tabular-nums;
+}
+.result .big.today { color: var(--olive); }
+.result .caption { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.dates {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0 0;
+  border-top: 1px dashed var(--border);
+  display: grid;
+  gap: .3rem;
+  font-size: .95rem;
+  color: var(--muted);
+}
+.dates strong { color: var(--text); margin-right: .4rem; }
+.result.cancel .caption { color: var(--muted); }
+.hint { margin: 1rem 0 0; font-size: .9rem; color: var(--muted); text-align: center; }
+
+/* ---------- 모바일 ---------- */
+@media (max-width: 860px) {
+  body { grid-template-columns: 1fr; }
+  /* JS 없이: 좁은 화면에서는 사이드바가 상단바가 되고 메뉴가 가로로 펼쳐집니다 */
+  .sidebar { position: static; height: auto; gap: .6rem; padding: .9rem 1rem; }
+  .brand { font-size: 1.25rem; }
+  .sb-role, .sb-foot { display: none; }
+  .sidebar nav { flex-direction: row; flex-wrap: wrap; gap: .2rem; }
+  .sidebar nav a { padding: .35rem .65rem; font-size: .9rem; }
+  .sidebar nav a small { display: none; }
+  .content { padding: 2rem 1rem; }
+  .result { padding: 1.5rem 1rem; }
+}

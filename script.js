@@ -1,45 +1,22 @@
-// 사이트 공통 스크립트
+// 사이트 공통 스크립트 (home / about / portfolio / contact)
 (function () {
-  var root = document.documentElement;
-
-  // 1. 푸터의 연도를 자동으로 표시합니다.
+  // 1. 사이드바의 연도를 자동으로 표시합니다.
   var y = document.getElementById('year');
   if (y) { y.textContent = new Date().getFullYear(); }
 
-  // 2. 다크 모드: 저장된 설정 > 시스템 설정 순서로 적용합니다.
-  var themeBtn = document.getElementById('theme-toggle');
-  function getSaved() {
-    try { return localStorage.getItem('theme'); } catch (e) { return null; }
-  }
-  function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    if (themeBtn) {
-      themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
-      themeBtn.setAttribute('aria-label', theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
-    }
-  }
-  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(getSaved() || (prefersDark ? 'dark' : 'light'));
-  if (themeBtn) {
-    themeBtn.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-    });
-  }
-
-  // 3. 모바일 메뉴 열기/닫기
+  // 2. 모바일 메뉴 열기/닫기 (좁은 화면에서 사이드바가 상단바로 바뀝니다)
   var menuBtn = document.getElementById('menu-toggle');
-  var nav = document.querySelector('nav');
-  if (menuBtn && nav) {
+  var sidebar = document.querySelector('.sidebar');
+  if (menuBtn && sidebar) {
     menuBtn.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
+      var open = sidebar.classList.toggle('open');
       menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
       menuBtn.textContent = open ? '✕' : '☰';
     });
   }
 
-  // 4. 스크롤하면 카드가 부드럽게 나타납니다.
+  // 3. 스크롤하면 블록이 부드럽게 나타납니다.
   var items = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -55,23 +32,7 @@
     items.forEach(function (el) { el.classList.add('visible'); });
   }
 
-  // 5. 홈 화면 타이핑 효과
-  var typing = document.querySelector('.typing');
-  if (typing) {
-    var words = JSON.parse(typing.getAttribute('data-words'));
-    var w = 0, c = 0, deleting = false;
-    (function tick() {
-      var word = words[w];
-      c += deleting ? -1 : 1;
-      typing.textContent = word.slice(0, c);
-      var delay = deleting ? 50 : 110;
-      if (!deleting && c === word.length) { deleting = true; delay = 1600; }
-      else if (deleting && c === 0) { deleting = false; w = (w + 1) % words.length; delay = 400; }
-      setTimeout(tick, delay);
-    })();
-  }
-
-  // 6. 이메일 복사 버튼
+  // 4. 이메일 복사 버튼
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var text = btn.getAttribute('data-copy');
@@ -83,7 +44,7 @@
     });
   });
 
-  // 7. 문의 폼: 입력값을 확인한 뒤 메일 앱으로 보냅니다.
+  // 5. 문의 폼: 입력값을 확인한 뒤 메일 앱으로 보냅니다.
   var form = document.querySelector('.contact-form');
   if (form) {
     var msg = form.querySelector('.form-msg');

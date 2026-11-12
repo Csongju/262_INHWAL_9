@@ -5,50 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio | 추송주</title>
   <link rel="stylesheet" href="style.css">
-  <!-- 페이지가 그려지기 전에 테마를 적용해 깜빡임을 막습니다 -->
-  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
 <body>
-<header class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="index.html">추송주<span>.</span></a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="portfolio.html" aria-current="page">Portfolio</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button class="icon-btn" id="theme-toggle" type="button" aria-label="다크 모드로 전환">🌙</button>
-    <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+<aside class="sidebar">
+  <div class="sb-top">
+    <a class="brand" href="home.html">추송주<span>.</span></a>
+    <p class="sb-role">광운대학교 소프트웨어학부 23학번</p>
+    <button class="menu-btn" id="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">☰</button>
   </div>
-</header>
-
-<section class="hero">
-  <span class="eyebrow">Portfolio</span>
-  <h1>프로젝트</h1>
-  <p class="subtitle">인터넷활용 9주차: 홈페이지 꾸미기</p>
-</section>
-
-<main class="container">
-  <div class="projects">
-    <article class="card project reveal">
-      <span class="badge">2026-2학기</span>
-      <h3>인터넷활용 홈페이지</h3>
-      <p>2026학년도 2학기 인터넷활용 수업에서 HTML, CSS, JavaScript로 만든 개인 소개 홈페이지입니다.</p>
-      <a class="btn outline" href="https://github.com/Csongju" target="_blank" rel="noopener">GitHub 보기 ↗</a>
-    </article>
-
-    <article class="card project placeholder reveal">
-      <span class="badge soon">Coming Soon</span>
-      <h3>다음 프로젝트</h3>
-      <p>새로운 프로젝트를 준비하고 있습니다. 추후 추가 예정입니다.</p>
-    </article>
+  <nav>
+    <a href="home.html"><small>01</small>Home</a>
+    <a href="about.html"><small>02</small>About</a>
+    <a href="portfolio.html" aria-current="page"><small>03</small>Portfolio</a>
+    <a href="contact.html"><small>04</small>Contact</a>
+  </nav>
+  <div class="sb-foot">
+    <small>&copy; <span id="year"></span> 추송주</small>
   </div>
+</aside>
+
+<main class="content">
+  <header class="page-head">
+    <span class="page-no">03 · Portfolio</span>
+    <h1>주차별 <em>실습</em> 기록</h1>
+    <p>인터넷활용 수업에서 만든 실습들을 주차별로 모았습니다.</p>
+  </header>
+
+  <!-- 새 주차를 추가할 때: 아래 <article class="week"> 블록을 복사해 위쪽에 붙여넣고,
+       폴더 경로를 바꿔 주세요. (폴더명의 공백은 %20으로 적습니다) -->
+  <article class="week reveal">
+    <header class="week-head">
+      <span class="week-num">WEEK 11</span>
+      <h2>JS 코어 객체로 기능 추가</h2>
+      <span class="meta">2026.11.12 · 11. 261112</span>
+    </header>
+    <ol class="lab-list">
+      <!-- 박스(a) 전체가 링크라서 어디를 눌러도 이동합니다 -->
+      <li>
+        <a href="11.%20261112/dday/dday.html">
+          <span>
+            <strong>실습 1: D-Day 계산기</strong>
+            <span class="desc">설명: Date 객체를 활용하여 D-Day를 계산합니다.</span>
+          </span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="11.%20261112/random/random.html">
+          <span>
+            <strong>실습 2: 랜덤 뽑기</strong>
+            <span class="desc">설명: String, Array, Math 객체를 조합한 랜덤 뽑기입니다.</span>
+          </span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ol>
+  </article>
+
+  <article class="week project reveal">
+    <span class="badge">2026-2학기</span>
+    <h2>인터넷활용 홈페이지</h2>
+    <p>2026학년도 2학기 인터넷활용 수업에서 HTML, CSS, JavaScript로 만든 개인 소개 홈페이지입니다.</p>
+    <a class="btn outline" href="https://github.com/Csongju" target="_blank" rel="noopener">GitHub 보기 ↗</a>
+  </article>
 </main>
 
-<footer>
-  <small>&copy; <span id="year"></span> 추송주. All rights reserved.</small>
-</footer>
 <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>D-Day 계산기 - 인터넷활용 실습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>이름: (여기에 추가)</h1>
+  <p class="subtitle">한 줄 소개: (여기에 추가)</p>
+</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<main class="container">
+<section>
+  <h2>Date 객체 활용: D-Day 계산기</h2>
+  
+  <script>
+    // 1. 오늘 날짜 객체 생성
+    let now = new Date(); 
+
+    // 2. prompt()로 사용자에게 연, 월, 일 입력받기
+    let year = prompt("목표 연도를 입력하세요 (예: 2025)", "2025");
+    let month = prompt("목표 월을 입력하세요 (1~12)", "12");
+    let day = prompt("목표 일을 입력하세요 (1~31)", "25");
+
+    // 사용자가 '취소'를 누르거나 값을 입력하지 않은 경우
+    if (!year || !month || !day) {
+      document.write("<h3>D-Day 계산을 취소했습니다.</h3>");
+    } else {
+      // 3. 입력받은 값으로 목표 날짜 객체 생성
+      // Date 객체의 월은 0부터 시작(0=1월)하므로 입력값에서 1을 빼줍니다. 
+      let targetDate = new Date(year, month - 1, day); 
+
+      // 4. 날짜 차이 계산 (밀리초 단위)
+      // getTime() : 1970년 1월 1일부터 경과된 밀리초 반환 
+      let diffMs = targetDate.getTime() - now.getTime();
+
+      // 5. 밀리초(ms)를 일(day) 단위로 변환
+      // Math.ceil()은 소수점 올림 (D-Day는 보통 당일을 포함하므로)
+      let diffDay = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+      // 6. document.write()로 결과 출력
+      document.write("<h3>목표 날짜: " + targetDate.toLocaleString() + "</h3>"); 
+
+      if (diffDay === 0) {
+        document.write("<h3> D-Day 입니다!</h3>");
+      } else if (diffDay > 0) {
+        document.write("<h3> D-" + diffDay + "일 남았습니다.</h3>");
+      } else {
+        document.write("<h3> D+" + Math.abs(diffDay) + "일 지났습니다.</h3>"); 
+      }
+
+      document.write("<hr>");
+      document.write("<p>오늘 날짜: " + now.toLocaleString() + "</p>");
+      document.write("<p><i>새로고침(F5)을 눌러 다시 계산할 수 있습니다.</i></p>");
+    }
+  </script>
+
+</section>
+</main>
+<footer>
+  <small>&copy; <span id="year"></span> 이름: (여기에 추가)</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

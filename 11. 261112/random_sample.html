@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>내맘대로 랜덤 뽑기 - 인터넷활용 실습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>이름: (여기에 추가)</h1>
+  <p class="subtitle">한 줄 소개: (여기에 추가)</p>
+</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<main class="container">
+<section>
+  <h2>String + Array + Math 조합: 내맘대로 뽑기</h2>
+  
+  <script>
+    // 1. String: prompt()로 사용자에게 '문자열' 입력받기
+    let defaultList = "제육볶음,돈까스,순대국,김치찌개,햄버거,초밥,파스타,샐러드,떡볶이,마라탕,사과,바나나,딸기,수박";
+    let inputString = prompt("항목을 콤마(,)로 구분하여 입력하세요", defaultList);
+
+    // 사용자가 '취소'를 누른 경우
+    if (!inputString) {
+      document.write("<h3>뽑기를 취소했습니다.</h3>");
+    } else {
+      
+      // 2. Array: String.split(',') 메소드로 '문자열'을 '배열'로 변환
+      let items = inputString.split(','); 
+
+      // 3. Math: Math.random()과 Math.floor()로 랜덤 인덱스 뽑기
+      let index = Math.floor(Math.random() * items.length); 
+
+      // 4. 결과 출력
+      document.write("<h3>입력한 항목 (총 " + items.length + "개):</h3>");
+      document.write("<p>" + inputString + "</p>");
+      document.write("<hr>");
+      document.write("<h3> 당신의 선택은...</h3>");
+
+      // .trim() : 공백 제거
+      let choice = items[index].trim();
+
+      document.write("<h1> " + choice + " !!!!</h1>");
+      document.write("<p><i>새로고침(F5)을 눌러 다시 뽑을 수 있습니다.</i></p>");
+    }
+  </script>
+
+</section>
+</main>
+<footer>
+  <small>&copy; <span id="year"></span> 이름: (여기에 추가)</small>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
